@@ -1,7 +1,7 @@
 ---
-id: intro
+id: capstone-index
 title: "Capstone Project: Full VLA System"
-sidebar_position: 6
+sidebar_position: 1
 ---
 
 # Capstone Project: Full VLA System
@@ -54,9 +54,9 @@ A working system demonstrating:
 
 ## Project Structure
 
-1. **Architecture** - System design and data flow
-2. **Implementation** - Step-by-step integration guide
-3. **Troubleshooting** - Common issues and solutions
+1. [Architecture](./architecture.md) - System design and data flow
+2. [Implementation](./implementation.md) - Step-by-step integration guide
+3. [Troubleshooting](./troubleshooting.md) - Common issues and solutions
 
 ## Success Criteria
 
@@ -64,8 +64,8 @@ A working system demonstrating:
 - [ ] LLM generates valid action sequences
 - [ ] Robot navigates to target locations
 - [ ] Error recovery works gracefully
-- [ ] End-to-end latency &lt;5 seconds
+- [ ] End-to-end latency less than 5 seconds
 
 ## Next Steps
 
-Start with Architecture to understand system design.
+Start with [Architecture](./architecture.md) to understand the system design.
