@@ -1,0 +1,278 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/yourusername/physical-ai-ebook/schemas/module.json",
+  "title": "Module",
+  "description": "A learning module/chapter in the Physical AI & Humanoid Robotics E-Book",
+  "type": "object",
+  "required": [
+    "id",
+    "number",
+    "title",
+    "priority",
+    "description",
+    "learningObjectives",
+    "estimatedHours",
+    "lessons",
+    "codeExamples",
+    "citations"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^module-\\d{2}-[a-z0-9-]+$",
+      "description": "Unique identifier (e.g., 'module-01-ros2')",
+      "examples": ["module-01-ros2", "module-02-simulation"]
+    },
+    "number": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Sequential module number (1-5)"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 100,
+      "description": "Human-readable module name",
+      "examples": ["ROS 2 Foundation", "Gazebo & Unity Simulation"]
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["P1", "P2", "P3", "P4", "P5"],
+      "description": "User story priority from specification"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 500,
+      "description": "Brief module overview (1-2 sentences, grade 9-12 reading level)"
+    },
+    "learningObjectives": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "order", "objective", "assessmentCriteria", "bloomLevel"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^lo-[a-z0-9]+-\\d{2}$",
+            "description": "Learning objective ID"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "objective": {
+            "type": "string",
+            "minLength": 10,
+            "description": "Action-oriented learning outcome (starts with verb)"
+          },
+          "assessmentCriteria": {
+            "type": "string",
+            "minLength": 10,
+            "description": "Measurable verification method"
+          },
+          "bloomLevel": {
+            "type": "string",
+            "enum": ["Remember", "Understand", "Apply", "Analyze", "Evaluate", "Create"],
+            "description": "Bloom's Taxonomy cognitive level"
+          }
+        }
+      }
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^module-\\d{2}-[a-z0-9-]+$"
+      },
+      "description": "Required prior modules (empty for P1)"
+    },
+    "estimatedHours": {
+      "type": "integer",
+      "minimum": 4,
+      "maximum": 12,
+      "description": "Time to complete module (4-12 hours)"
+    },
+    "lessons": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "filename", "title", "order"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string",
+            "pattern": "^\\d{2}-[a-z0-9-]+\\.md$",
+            "description": "Lesson file (e.g., '01-installation.md')"
+          },
+          "title": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "codeExamples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "filename", "title", "language"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string",
+            "description": "Code file (e.g., 'publisher.py', 'humanoid.urdf')"
+          },
+          "title": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string",
+            "enum": ["python", "cpp", "bash", "xml", "yaml", "json", "typescript", "csharp"],
+            "description": "Programming/markup language"
+          }
+        }
+      }
+    },
+    "diagrams": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "diagramType", "altText"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "diagramType": {
+            "type": "string",
+            "enum": [
+              "mermaid-flowchart",
+              "mermaid-sequence",
+              "mermaid-class",
+              "mermaid-state",
+              "image-png",
+              "image-svg"
+            ]
+          },
+          "mermaidCode": {
+            "type": "string",
+            "description": "Mermaid syntax (required if type starts with 'mermaid-')"
+          },
+          "imagePath": {
+            "type": "string",
+            "description": "Path to static image (required if type starts with 'image-')"
+          },
+          "altText": {
+            "type": "string",
+            "minLength": 10,
+            "description": "Accessibility description for screen readers"
+          }
+        }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "minItems": 15,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "authors", "year", "title", "url", "accessDate", "apaFormatted"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["official", "technical", "research"],
+            "description": "Source category"
+          },
+          "authors": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 2015,
+            "maximum": 2030
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "accessDate": {
+            "type": "string",
+            "format": "date",
+            "description": "ISO 8601 format (YYYY-MM-DD)"
+          },
+          "apaFormatted": {
+            "type": "string",
+            "minLength": 20,
+            "description": "Full APA 7th edition citation"
+          }
+        }
+      }
+    },
+    "troubleshooting": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "symptom", "causes", "diagnostics", "solutions"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "symptom": {
+            "type": "string",
+            "minLength": 10,
+            "description": "Specific error message or observable problem"
+          },
+          "causes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "diagnostics": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "solutions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "officialDocLink": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    }
+  }
+}

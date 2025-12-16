@@ -1,0 +1,61 @@
+.troubleshootingBox {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border: 2px solid #e74c3c;
+  border-radius: 6px;
+  background-color: rgba(231, 76, 60, 0.05);
+}
+
+.troubleshootingHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.troubleshootingIcon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.troubleshootingTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e74c3c;
+}
+
+.troubleshootingSection {
+  margin-bottom: 1rem;
+}
+
+.troubleshootingSection:last-child {
+  margin-bottom: 0;
+}
+
+.sectionLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.sectionContent {
+  margin-left: 1rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .troubleshootingBox {
+  background-color: rgba(231, 76, 60, 0.1);
+  border-color: #c0392b;
+}
+
+[data-theme='dark'] .troubleshootingTitle {
+  color: #e67e73;
+}
+
+[data-theme='dark'] .troubleshootingHeader {
+  border-bottom-color: rgba(231, 76, 60, 0.3);
+}

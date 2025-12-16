@@ -1,0 +1,78 @@
+.calloutBox {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid;
+  border-radius: 4px;
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.calloutHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.calloutIcon {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.calloutTitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.calloutContent {
+  margin-left: 1.75rem;
+}
+
+/* Type-specific styling */
+.info {
+  border-left-color: #2e8bc0;
+  background-color: rgba(46, 139, 192, 0.1);
+}
+
+.warning {
+  border-left-color: #f0ad4e;
+  background-color: rgba(240, 173, 78, 0.1);
+}
+
+.tip {
+  border-left-color: #5cb85c;
+  background-color: rgba(92, 184, 92, 0.1);
+}
+
+.prerequisite {
+  border-left-color: #9b59b6;
+  background-color: rgba(155, 89, 182, 0.1);
+}
+
+.note {
+  border-left-color: #607d8b;
+  background-color: rgba(96, 125, 139, 0.1);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .calloutBox {
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .info {
+  background-color: rgba(46, 139, 192, 0.2);
+}
+
+[data-theme='dark'] .warning {
+  background-color: rgba(240, 173, 78, 0.2);
+}
+
+[data-theme='dark'] .tip {
+  background-color: rgba(92, 184, 92, 0.2);
+}
+
+[data-theme='dark'] .prerequisite {
+  background-color: rgba(155, 89, 182, 0.2);
+}
+
+[data-theme='dark'] .note {
+  background-color: rgba(96, 125, 139, 0.2);
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/yourusername/physical-ai-ebook/schemas/code-example.json",
+  "title": "CodeExample",
+  "description": "A reproducible code snippet demonstrating a robotics concept",
+  "type": "object",
+  "required": [
+    "id",
+    "moduleId",
+    "filename",
+    "title",
+    "language",
+    "description",
+    "prerequisites",
+    "setupCommands",
+    "executionCommand",
+    "expectedOutput",
+    "codeContent",
+    "testedOn"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^example-[a-z0-9-]+$",
+      "description": "Unique identifier (e.g., 'example-publisher-py')",
+      "examples": ["example-publisher-py", "example-humanoid-urdf"]
+    },
+    "moduleId": {
+      "type": "string",
+      "pattern": "^module-\\d{2}-[a-z0-9-]+$",
+      "description": "Parent module reference"
+    },
+    "filename": {
+      "type": "string",
+      "minLength": 3,
+      "description": "File path relative to examples/ directory",
+      "examples": ["publisher.py", "humanoid.urdf", "simple_world.sdf"]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 100,
+      "description": "Descriptive name for the example"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["python", "cpp", "bash", "xml", "yaml", "json", "typescript", "csharp"],
+      "description": "Programming or markup language for syntax highlighting"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 500,
+      "description": "What this example demonstrates (1-2 sentences)"
+    },
+    "prerequisites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "description": "Exact package name (e.g., 'ros-humble-rclpy')"
+      },
+      "examples": [
+        ["ros-humble-rclpy", "python3"],
+        ["gazebo-garden", "ros-humble-gazebo-ros-pkgs"]
+      ]
+    },
+    "setupCommands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "description": "Bash command to run before execution"
+      },
+      "examples": [
+        ["source /opt/ros/humble/setup.bash", "mkdir -p ~/ros2_ws/src"],
+        ["cd ~/ros2_ws", "colcon build"]
+      ]
+    },
+    "executionCommand": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Command to run the example (must not require interactive input)"
+    },
+    "expectedOutput": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Terminal output or path to screenshot showing successful execution"
+    },
+    "codeContent": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Full source code of the example"
+    },
+    "testedOn": {
+      "type": "string",
+      "pattern": "Ubuntu 22\\.04",
+      "description": "Platform verification (must include 'Ubuntu 22.04')",
+      "examples": [
+        "Ubuntu 22.04 LTS, ROS 2 Humble, Python 3.10",
+        "Ubuntu 22.04 LTS, Gazebo Garden, ROS 2 Humble"
+      ]
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional additional notes or caveats"
+    }
+  }
+}

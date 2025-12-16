@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/yourusername/physical-ai-ebook/schemas/citation.json",
+  "title": "Citation",
+  "description": "APA 7th edition citation for official documentation, technical source, or research paper",
+  "type": "object",
+  "required": [
+    "id",
+    "moduleId",
+    "type",
+    "authors",
+    "year",
+    "title",
+    "url",
+    "accessDate",
+    "apaFormatted"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^cite-[a-z0-9-]+$",
+      "description": "Unique identifier (e.g., 'cite-ros2-docs-humble')",
+      "examples": ["cite-ros2-docs-humble", "cite-gazebo-tutorial-sensors"]
+    },
+    "moduleId": {
+      "type": "string",
+      "pattern": "^module-\\d{2}-[a-z0-9-]+$",
+      "description": "Parent module reference"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["official", "technical", "research"],
+      "description": "Source category: official (docs), technical (blogs/guides), research (papers)"
+    },
+    "authors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "description": "Author name or 'Organization Name' for official docs"
+      },
+      "examples": [
+        ["Open Robotics"],
+        ["NVIDIA Corporation"],
+        ["Smith, J.", "Doe, A."]
+      ]
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 2015,
+      "maximum": 2030,
+      "description": "Publication or last updated year"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 300,
+      "description": "Document, article, or paper title"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "Permanent link (HTTPS required, version-specific when possible)"
+    },
+    "accessDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date retrieved in ISO 8601 format (YYYY-MM-DD)"
+    },
+    "apaFormatted": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1000,
+      "description": "Full APA 7th edition citation string",
+      "examples": [
+        "Open Robotics. (2023). ROS 2 Humble Concepts - Nodes. https://docs.ros.org/en/humble/Concepts/Basic/About-Nodes.html"
+      ]
+    },
+    "doi": {
+      "type": "string",
+      "pattern": "^10\\.\\d{4,}/",
+      "description": "Digital Object Identifier (for research papers)"
+    },
+    "journal": {
+      "type": "string",
+      "description": "Journal name (for research papers)"
+    },
+    "volume": {
+      "type": "integer",
+      "description": "Journal volume (for research papers)"
+    },
+    "issue": {
+      "type": "integer",
+      "description": "Journal issue (for research papers)"
+    },
+    "pages": {
+      "type": "string",
+      "pattern": "^\\d+-\\d+$",
+      "description": "Page range (for research papers, e.g., '123-145')"
+    }
+  },
+  "if": {
+    "properties": {
+      "type": {
+        "const": "research"
+      }
+    }
+  },
+  "then": {
+    "required": ["doi"]
+  }
+}
