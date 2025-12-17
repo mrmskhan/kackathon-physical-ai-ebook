@@ -93,7 +93,7 @@ const config: Config = {
           label: 'E-Book',
         },
         {
-          href: 'https://github.com/yourusername/hackathon-book-proj',
+          href: 'https://github.com/mrmskhan/hackathon-physical-ai-ebook.git',
           label: 'GitHub',
           position: 'right',
         },
